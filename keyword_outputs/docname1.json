@@ -1,0 +1,18 @@
+{
+  "document": "docname1",
+  "classification": "Vaccination",
+  "entity": [
+    "CONRAD J BUTLER",
+    "28 Jun 2001",
+    "8003 6010 0241 5508",
+    "1001 7474 1683",
+    "04 Oct 2021"
+  ],
+  "label": [
+    "NAME",
+    "DATE OF BIRTH",
+    "INDIVIDUAL HEALTHCARE IDENTIFIER",
+    "DOCUMENT NUMBER ",
+    "VALID FROM "
+  ]
+}

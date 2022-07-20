@@ -1,0 +1,93 @@
+{
+    "classes": ["LICENSE NO", "EXPIRATION DATE ", "LICENSE TYPE", "NAME", "ADDRESS", "POSTCODE", "DATE OF BIRTH"],
+    "annotations": [
+        ["AUSTRALIA DOCUMENI No. Type / Type Code ol Issuing/ Coda de l'Efat PASSPORT P SIA US amefteur L4819236 Namé / Nom KORMAN ADAM MARCUS Nationality / Nationaleé AUSTRALIAN Date of birth / Dato de naissance 28 JUL 1975 Sax/ Sere Place of brif/ Lieu de naissance M MELBOURNE Date of issue / Date de délvrance Holder's signature / Signafure du bnulavé 05 NOV 2003 Date of expiry / Dale d'explrunon 05 NOV 2013 A.Larman Authority i Autorne LONDON", { "entities": [
+                [94, 102, "LICENSE NO"],
+                [121, 132, "NAME"],
+                [203, 214, "DATE OF BIRTH"],
+                [392, 403, "EXPIRATION DATE "]
+            ] }],
+        ["DRIVER S LICENCE SOUTH AUSTRA LIA Licence No Date Of Birth   Expiry Date Conditions B01194 01/20/1981 28/08/2016 CLASS C 01 CRAIG MENON 21 AUDREY ST ASCOT PARK 5043 ORGAN DONOR PLÉASE CARRY LICENCE WHEN DRIVNG", { "entities": [
+                [84, 90, "LICENSE TYPE"],
+                [91, 101, "DATE OF BIRTH"],
+                [102, 112, "EXPIRATION DATE "],
+                [124, 135, "NAME"],
+                [136, 159, "ADDRESS"],
+                [160, 164, "POSTCODE"]
+            ] }],
+        ["DRIVER LICENCE AUSTRALIAN CAPITAL TERRITORY Family Name Given Name Middle Name 13 CHALLIS ST DICKSON ACT 2602 Date of Birth 27MAY1984 Liosace Expires Licence No Licence Number Date of Birth Liconco ClassC,R Condutions S Jae A123456789", { "entities": [
+                [79, 104, "ADDRESS"],
+                [105, 109, "POSTCODE"],
+                [124, 133, "DATE OF BIRTH"]
+            ] }],
+        ["Learner Permit VICTORIA AUSTRALIA SAI LICENCE NO SAMPLE 012345678 10 SAMPLE STREET SAMPLETOWN VIC ONO LICENCE EXPIAY DATE OF BIRTH 28-05-2022 27-05-1994 LICENCE TIPE CONEITIONS CAR Ond Ovicroads", { "entities": [
+                [56, 65, "LICENSE NO"],
+                [66, 93, "ADDRESS"],
+                [131, 141, "EXPIRATION DATE "],
+                [142, 152, "DATE OF BIRTH"],
+                [177, 180, "LICENSE TYPE"]
+            ] }],
+        ["CENCE DRIVER AUSTRAL A VIсTоRи CULLEN LICENCE NO EDWARD 981863473 77 SAMPLE PARADE GROVEDALE VIC 3216 LICENCE EXPIR DATE OF BIRTH 10-19-2024 27-05-1990 LICENCE TYPE CONDITIONS E CAR Coan C OA avic roads", { "entities": [
+                [31, 37, "NAME"],
+                [49, 55, "NAME"],
+                [56, 65, "LICENSE NO"],
+                [66, 96, "ADDRESS"],
+                [97, 101, "POSTCODE"],
+                [130, 140, "EXPIRATION DATE "],
+                [141, 151, "DATE OF BIRTH"],
+                [178, 181, "LICENSE TYPE"]
+            ] }],
+        ["UNITED KINGDOM OF GREAT BRITAIN AND NORTHERN IRELAND O- SSPORT Type/Type Code/Code Passport Number ASSEPORT TIO GBR 925603778 Sumname/Nom (1 UK SPECIMEN Family Name. Given namos/Prénoms (2),% ANGELA ZOE Given Name Nationality/Nationalité (3) BRITISH CITIZEN Date of birth/Date de naissance (4) 11 SEP /SEPT 88 Date of Birth Sex/Sexe (5) Place of birth/Lieu de naissance (6) F CROYDON Dato of issue/Date do détivrance (7) Authority/Autorité' (8) 16 JUL /JUIL 10 IPS Date of explry/Date d'expiration (P) Holder's signature/Signature du titulaire (10) - /JUIL 20 exeerto) Yoy ASpecimen P<GBRUK<SPEC I MEN<< ANG E L A < Z O E < < < << < < k k < < < < < < < 9256037787GBR8809117 F2007162<<<<<< <<<<<<<<00", { "entities": [
+                [116, 125, "LICENSE NO"],
+                [192, 202, "NAME"],
+                [294, 309, "DATE OF BIRTH"]
+            ] }],
+        ["护照 类型/Type国家码/CountryCode 护照号/PassportNo. PASSPORT P CHN G00000000 姓／Sumame Passport Number EE/WANG Family Name &/ Given names 样本/YANGBENGivenName 性别／Sex 出生地点／Placeofbirth /F 北京/BEIJING Date of Birth 签发地额／Placoof Asue 05 APR 1975 XXx*********** Date of issue ири 01 SEP 2008 31 AWG 签发机关／Authority 中华人民共和国驻xxxＸxxxxxx大使馆 EMBASSY OF P.R.C. IN XXXXXXXXXX POCHNWAN6<<YANGBEN<<<<<<<<KkkK***K*KKKKKKKK$ G000000002CHN7504057F1 8083171920XXXX<<<<<<82 00000000", { "entities": [
+                [57, 66, "LICENSE NO"],
+                [92, 99, "NAME"],
+                [127, 146, "NAME"],
+                [218, 229, "DATE OF BIRTH"]
+            ] }],
+        ["AUSTRALIA PASSPORT Type / Type Code of issuing / Code de l'Etet DOCUMENT No. SPECIMEN p State A U S émetteur PA0940443 Name / Nom CITIZEN Family Name ECIMEN J ANE Given Name ratonanty AUSTRALIAN Date of birth / Date de naissance 07 JUN 1984 Place of birth / Lieu de naissance F Gender CANBERRA Outo de délivrance Holder's signature / Signature du titulaire 01 MAR 2014 Date of expiry / Date d'expiration 01 MAR 2024 Jane Ctgen AUSTRALIA P<AUSCITIZEN<<J ANE<<<<<*****************KKK PA09404433AUS8406077F 1903212<17332717P<<<<68", { "entities": [
+                [109, 118, "LICENSE NO"],
+                [150, 162, "NAME"],
+                [229, 240, "DATE OF BIRTH"],
+                [404, 415, "EXPIRATION DATE "]
+            ] }],
+        ["DRIVE LIGENCEA Given Name VICTOR SAM S Middle Initial LICENCE NO. SAMPLE 098140783 Family Name 10 SAMPLE STREET SAMPLETOWN STATE 0000 LICENCE EXPIRY DATE OF BIRTH 18-06-2019 01-09-1990 LICENCE TYPE CONDITIONS CAR ISVX 1091990 vicroads", { "entities": [
+                [26, 38, "NAME"],
+                [73, 82, "LICENSE NO"],
+                [95, 128, "ADDRESS"],
+                [129, 133, "POSTCODE"],
+                [163, 173, "EXPIRATION DATE "],
+                [174, 184, "DATE OF BIRTH"],
+                [209, 212, "LICENSE TYPE"]
+            ] }],
+        ["DRIVER UICENCE VICTORIA AUSTRALIA DANELF BOWEN LICENCE NUMBER GLENHUNTLY 3163   ICENCE EXPIRY LICENGE TYPE 27-01-11 CAR DATE OF BINTH CONDITIONS ROTENTIA ORGAN BONOR Lanel fowe", { "entities": [
+                [34, 46, "NAME"],
+                [62, 72, "ADDRESS"],
+                [73, 77, "POSTCODE"],
+                [107, 115, "EXPIRATION DATE "]
+            ] }],
+        ["HEAVY VEHICIE AUSTE ER LICENCE CTORIA AUSTRALIA AYNE C AMIET LICENCE NUMBER 293 BAGLAN ST 059120568 ALE VIC 3050 LICENCE EXPIRY LIGENCE 212010CＡ  DATE OF BINTH CONDITIONS 02.06-1983 vic roads", { "entities": [
+                [48, 60, "NAME"],
+                [76, 89, "ADDRESS"],
+                [90, 99, "LICENSE NO"],
+                [100, 112, "ADDRESS"]
+            ] }],
+        ["DRIVER LICENCE VICTORIA AUSTRALIA NITIN LICENCE NO BOSE MILLERS RD ALTONA LICENCE EXPIRY DATE OF BIRTH 08-02-2028 LICENCE TYPE CONDITIONS CAR ? vicroads Team-BHR.e", { "entities": [
+                [34, 39, "NAME"],
+                [56, 73, "ADDRESS"],
+                [103, 113, "EXPIRATION DATE "],
+                [138, 141, "LICENSE TYPE"]
+            ] }],
+        ["DRIVER LICENCE VICTORIA AUSTRALI A LICENCE NO. 094374927 2A BLUFF AVENUE FLINDERS 3929 LICENCE EXPIRY DATE OF BIRTH 22-06-2017 04-06-1993 IONEE LICENCE TYPE CONDITIONS CAR 04061993 avic roads bitcoinfake.com", { "entities": [
+                [47, 56, "LICENSE NO"],
+                [57, 81, "ADDRESS"],
+                [82, 86, "POSTCODE"],
+                [116, 126, "EXPIRATION DATE "],
+                [127, 137, "DATE OF BIRTH"],
+                [168, 171, "LICENSE TYPE"]
+            ] }]
+    ]
+}

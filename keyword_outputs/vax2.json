@@ -1,0 +1,18 @@
+{
+  "document": "vax2",
+  "classification": "Vaccination",
+  "entity": [
+    "REX PATRICK",
+    "21 May 1979",
+    "1234 5678 9012 3456",
+    "1000 0266 1571",
+    "30 Jul 2021"
+  ],
+  "label": [
+    "NAME",
+    "DATE OF BIRTH",
+    "INDIVIDUAL HEALTHCARE IDENTIFIER",
+    "DOCUMENT NUMBER ",
+    "VALID FROM "
+  ]
+}

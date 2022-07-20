@@ -1,0 +1,184 @@
+import spacy
+import random
+from spacy.training import Example
+
+TRAIN_DATA = [
+    ("DRIVER'S LICENCE SOUTH AUSTRALIA Licence No Date Of Birth Expity Date Conditions B01194 01/20/1981 28/08/2016 CLASS C 01 CRAIG MENON 21 AUDREY ST ASCOT PARK 5043 ORGAN DONOR PLEASE CARRY LICENCE WHEN DRIVING", { "entities": [
+            (81, 87, "DOCUMENT/LICENSE NUMBER"),
+            (88, 98, "DATE OF BIRTH"),
+            (99, 109, "EXPIRATION DATE"),
+            (121, 132, "NAME"),
+            (133, 156, "ADDRESS"),
+            (157, 161, "POSTCODE")
+ ] }),
+    ("LICENCE NO Driver Licence 082 835 927 SMITH Australia RUTH EMMA DOB 21 Apr 1974 Sex F Height 168 Class Type Effective Expiry C O 14.01.15 14.01.20 Conditions SANE   Queensland Gueensfand, Australia Drive safely Government", { "entities": [
+            (54, 63, "NAME"),
+            (68, 79, "DATE OF BIRTH"),
+            (129, 137, "EXPIRATION DATE"),
+            (138, 146, "EXPIRATION DATE")
+ ] }),
+    ("PROBATIONARY DRIVER LICENCE VICTORIA AUSTRALIA JUVY P LIM LICENCE NO 096975886 11 ROCHESTER VIST DERRIMUT VIC 3030 LICENCE EXPIRY DATE OF BIRTH 02-11-2014 06-12-1983 LICENCE TYPE CONDITIONS CAR AS 6121083 P2 END DATE 02-11-2014vic roads", { "entities": [
+            (47, 57, "NAME"),
+            (69, 78, "DOCUMENT/LICENSE NUMBER"),
+            (79, 109, "ADDRESS"),
+            (110, 114, "POSTCODE"),
+            (144, 154, "EXPIRATION DATE"),
+            (155, 165, "DATE OF BIRTH")
+ ] }),
+    ("PROBATIONARY DRIVER LICENCE VICTORIA AUSTRALIA GABRIEL A LICENCE NO VOLCHEK 099634719 U 2 20 PARK AVE GLEN HUNTLY VIC 3163 LICENCE EXPIRY DATE OF BIRTH 21-06-2016(A)16-06-1994 LICENCE TYPE CONDITIONS CAR AS P2 END DATE 606199/  21-06-2016 VollHEk ivicroads", { "entities": [
+            (47, 56, "NAME"),
+            (68, 75, "NAME"),
+            (76, 85, "DOCUMENT/LICENSE NUMBER"),
+            (93, 117, "ADDRESS"),
+            (118, 122, "POSTCODE"),
+            (152, 162, "EXPIRATION DATE"),
+            (165, 175, "DATE OF BIRTH")
+ ] }),
+    ("Driver Licence Au 103 805 501 SAMPLE SAMPLE SAMPLE DOB 16 May 1993 Scx F Height 163 CA P2 26.11.12 31.10.14 Queensland Queensland, Australla Drive safely Government", { "entities": [
+            (30, 50, "NAME"),
+            (55, 66, "DATE OF BIRTH"),
+            (90, 107, "EXPIRATION DATE")
+ ] }),
+    ("LICENCE DRIVER AUSTRALIA   CULLEN EDWARD LICENCE NO  981863473 77 SAMPLE PARADE GROVEDALE VIC 3216 LICENCE EXPIR DATE OF BIRTH 10-19-2024 27-05-1990 LICENCE TYPE CONDITIONS  CAR vic roads", { "entities": [
+            (27, 40, "NAME"),
+            (53, 62, "DOCUMENT/LICENSE NUMBER"),
+            (63, 93, "ADDRESS"),
+            (94, 98, "POSTCODE"),
+            (127, 137, "EXPIRATION DATE"),
+            (138, 148, "DATE OF BIRTH")
+ ] }),
+    ("DRIVER LICENCE VICTORIA AUSTRALIA TANYA M GARRETT LICENCE NO 094568635 U 12 32 MENTONE PDE MENTONE VIC 3194 LICENCE EXPIRY DATE OF BIRTH 31-03-2020 02-11-1980 LICENCE TYPE CONDITIONS CAR vicroads", { "entities": [
+            (34, 49, "NAME"),
+            (61, 70, "DOCUMENT/LICENSE NUMBER"),
+            (76, 107, "ADDRESS"),
+            (137, 147, "EXPIRATION DATE"),
+            (148, 158, "DATE OF BIRTH")
+ ] }),
+    ("DRIVER'S LICENCE SOUTH AUSTRALIA Licence No Date Of Birth Expiry Date Conditions D67588 23/02/1962 28/08/2017  CLASS C RICKY MAZZEO 17 WORDEN STREET ADELAIDE 5113 PLEASE CARRY UCENCE WHEN DRIVING", { "entities": [
+            (81, 87, "DOCUMENT/LICENSE NUMBER"),
+            (88, 98, "DATE OF BIRTH"),
+            (99, 109, "EXPIRATION DATE"),
+            (119, 131, "NAME"),
+            (132, 157, "ADDRESS"),
+            (158, 162, "POSTCODE")
+ ] }),
+    ("DRIVER LICENSE VICTORIA  AUSTRALIA LICENCE NO JANE CITIZEN 98765432 FLAT-0 77_SAMPLE PARADE KEW_EAST VIC 3102 LICENCE EXPIRY DATE OF BIRTH 20-05-2019 29-07-1983 LICENCE TYPE CONDITIONS CAR SBEAVX vic roac", { "entities": [
+            (46, 58, "NAME"),
+            (59, 67, "DOCUMENT/LICENSE NUMBER"),
+            (68, 104, "ADDRESS"),
+            (105, 109, "POSTCODE"),
+            (139, 149, "EXPIRATION DATE"),
+            (150, 160, "DATE OF BIRTH")
+ ] }),
+    ("PROBATIONARY DRIVER LICENCE VICTORIA AUSTRALIA BEN T MCINNENY LICENCE NO 098089369 21 SERVANTE ST SUNSHINE VIC 3020 LICENCE EXPIRY DATE OF BIRTH 14-09-2015(B)14-09-1993 LICENCE TYPE CONDITIONS CAR P2 END DATE 14-06-2016 vic roads", { "entities": [
+            (47, 61, "NAME"),
+            (73, 82, "DOCUMENT/LICENSE NUMBER"),
+            (83, 110, "ADDRESS"),
+            (111, 115, "POSTCODE"),
+            (145, 155, "EXPIRATION DATE"),
+            (158, 168, "DATE OF BIRTH")
+ ] }),
+    ("DRIVER LICENCE VICTORIA AUSTRALIA THOMAS W B  ADAMS LICENCE NO 051367820 44 HAMPTON ST MOE VIC 3825 LICENCE EXPIRY DATE OF BIRTH 08-04-2019 25-01-1934 LICENCE TYPE CONDITIONS CAR 2201105 avicroads ", { "entities": [
+            (34, 44, "NAME"),
+            (63, 72, "DOCUMENT/LICENSE NUMBER"),
+            (73, 99, "ADDRESS"),
+            (129, 139, "EXPIRATION DATE"),
+            (140, 150, "DATE OF BIRTH")
+ ] }),
+    ("PROBATIONARY DRIVER LICENCE VICTORIA AUSTRALIA RILEY T SOUTER  LICENCE NO 036140669 18-20 CLOVERFIELD CL BERWICK VIC 3806 LICENCE EXPIRY DATE OF BIRTH 04-12-2023 17-10-2001 LICENCE TYPE CONDITIONS CAR 710200 P1 END DATE vicroads 03-12-2020", { "entities": [
+            (47, 61, "NAME"),
+            (74, 83, "DOCUMENT/LICENSE NUMBER"),
+            (84, 116, "ADDRESS"),
+            (117, 121, "POSTCODE"),
+            (151, 161, "EXPIRATION DATE"),
+            (162, 172, "DATE OF BIRTH")
+ ] }),
+    ("LICENCE NO. Driver Licence 00 216 392 CITIZEN Catherine Alexandria DOB 24-08-1972 Sex F Height. 170 Type Class Effective Expiry 0 R 30.06.10 30.06.12 Conditions S ALIDAX AT FIDELIS Queensland, Australia Drive safely Queensland Government", { "entities": [
+            (27, 37, "DOCUMENT/LICENSE NUMBER"),
+            (46, 66, "NAME"),
+            (71, 81, "DATE OF BIRTH"),
+            (132, 149, "DATE OF BIRTH")
+ ] }),
+    ("PROBATIONARY DRIVER LICENÇE VICTORIA AUSTRALIA GIORGIO W LICENCE NO KATAKIS 002730758 3 CAROLINE ST ABERFELDIE VIC 3040 LICENCE EXPIRY DATE OF BIRTH 13-10-2024 09-04-2002 LICENCE TYPE CONDITIONS CAR 09042002 P1 END DATE 12-10-2021 vicroads", { "entities": [
+            (47, 56, "NAME"),
+            (68, 75, "NAME"),
+            (76, 85, "DOCUMENT/LICENSE NUMBER"),
+            (86, 114, "ADDRESS"),
+            (115, 119, "POSTCODE"),
+            (149, 159, "EXPIRATION DATE"),
+            (160, 170, "DATE OF BIRTH")
+ ] }),
+    ("LICENCE NO. Driver Licence 123 456 789 CITIZEN JOHN ANDREW DOB 28 Aug 1867 Sex M Height 180 Class Type Effective Expiry C P2 01.08.10 02.06.11 0 02.06.11 02.06.21 Conditions I,X1 Queensland, Australia Drive safely Queensland Government", { "entities": [
+            (27, 38, "DOCUMENT/LICENSE NUMBER"),
+            (47, 58, "NAME"),
+            (63, 74, "DATE OF BIRTH"),
+            (134, 162, "EXPIRATION DATE")
+ ] }),
+    ("DRIVER'S LICENCE SOUTH AUSTRALIA Licence No Date Of Birth Expiry Date Conditions O W65042 10/04/1960 10/04/2014 CLASS C 01 JANE CITIZEN 3 THIRD ST ADELAIDE 5000 ORGAN DONOR PLEASE CARRY LICENCE WHEN DRIVNG", { "entities": [
+            (83, 89, "DOCUMENT/LICENSE NUMBER"),
+            (90, 100, "DATE OF BIRTH"),
+            (101, 111, "EXPIRATION DATE"),
+            (123, 135, "NAME"),
+            (136, 155, "ADDRESS"),
+            (156, 160, "POSTCODE")
+ ] }),
+    ("LEARNER'S PERMIT SOUTH AUSTALIA Licence No L41136 Date Of Birth Expiry Date Conditions 141136 01/01/1959 09/01/2016 CLASS C JOHN SAMPLE 2 SECOND ST ADELAIDE 5000 ORGAN DONOR MUST BE CARRIED WHEN DRIVING", { "entities": [
+            (43, 49, "DOCUMENT/LICENSE NUMBER"),
+            (94, 104, "DATE OF BIRTH"),
+            (105, 115, "EXPIRATION DATE"),
+            (124, 135, "NAME"),
+            (136, 156, "ADDRESS"),
+            (157, 161, "POSTCODE")
+ ] }),
+    ("PROBATIONARY DRIVER LICENCE VICTORIA AUSTRALIA a BEN T MCINNENY LICENCE NO MCINNENY 098089369 21 SERVANTE ST SUNSHINE VIC 3020 LICENCE EXPIRY DATE OF BIRTH 14-09-2015(B)14-09-1993 LICENCE TYPE CONDITIONS CAR G091esa  vicroads T 0", { "entities": [
+            (49, 63, "NAME"),
+            (84, 93, "DOCUMENT/LICENSE NUMBER"),
+            (94, 121, "ADDRESS"),
+            (122, 126, "POSTCODE"),
+            (156, 166, "EXPIRATION DATE"),
+            (169, 179, "DATE OF BIRTH")
+ ] })
+]
+
+def train_spacy(data,iterations):
+    TRAIN_DATA = data
+    nlp = spacy.blank('en')  # create blank Language class
+    # create the built-in pipeline components and add them to the pipeline
+    # nlp.create_pipe works for built-ins that are registered with spaCy
+    if 'ner' not in nlp.pipe_names:
+        ner = nlp.add_pipe('ner', last=True)
+       
+
+    # add labels
+    for _, annotations in TRAIN_DATA:
+         for ent in annotations.get('entities'):
+            ner.add_label(ent[2].strip())
+
+    # get names of other pipes to disable them during training
+    other_pipes = [pipe for pipe in nlp.pipe_names if pipe != 'ner']
+    with nlp.disable_pipes(*other_pipes):  # only train NER
+        optimizer = nlp.begin_training()
+        for itn in range(iterations):
+            print("Staring iteration " + str(itn))
+            random.shuffle(TRAIN_DATA)
+            losses = {}
+            for text, annotations in TRAIN_DATA:
+                doc = nlp.make_doc(text)
+                example = Example.from_dict(doc, annotations)
+
+                nlp.update([example], sgd=optimizer, losses=losses, drop=0.2)
+            print(losses)
+    return nlp
+
+                
+nlp = train_spacy(TRAIN_DATA, 23)
+
+# Save our trained Model
+modelfile = input("Enter your Model Name: ")
+nlp.to_disk(".\\Models\\" + modelfile)
+
+#Test your text
+test_text = input("Enter your testing text: ")
+doc = nlp(test_text)
+for ent in doc.ents:
+    print(ent.text, ent.label_)

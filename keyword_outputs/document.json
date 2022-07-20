@@ -1,0 +1,20 @@
+{
+  "document": "document",
+  "classification": "Identification",
+  "entity": [
+    "ALONZO PETERSON  ",
+    "036143581",
+    "21 CREW ST BURWOOD VIC",
+    "3111",
+    "11-11-2024",
+    "04-07-1964"
+  ],
+  "label": [
+    "NAME",
+    "DOCUMENT/LICENSE NUMBER",
+    "ADDRESS",
+    "POSTCODE",
+    "EXPIRATION DATE",
+    "DATE OF BIRTH"
+  ]
+}
