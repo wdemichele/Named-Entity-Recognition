@@ -1,44 +1,47 @@
-import spacy
-import sys
-import json
-import pymongo
+import spacy, sys, json, pymongo, os, re
 from datetime import datetime
-import re
-import os
 
 MONGODB = "mongodb+srv://spinifexit:SpinifexIT@cluster0.qrflpxo.mongodb.net/?retryWrites=true&w=majority"
 
-def main(docname, classification, model, input, user):
+def camel_case_split(identifier):
+    matches = re.finditer('.+?(?:(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])|$)', identifier)
+    return ' '.join(map(str, [m.group(0) for m in matches])) 
+
+def main(docname, classification, user):
     
     client = pymongo.MongoClient(MONGODB)
     db = client['test']
     collection = db["smart-keywords"]
     smartwords = []
+    directory = os.path.dirname(os.path.abspath(__file__))
     
     if (classification == "Invoice"):
+        input = directory + "\\extracted.json"
         f = open(input)
         input = json.load(f)
         for key in input[0]['headerFields']:
             if ("value" in input[0]['headerFields'][key]):
                 if (input[0]['headerFields'][key]["value"] != ''):
-                    key = key.title()
                     smartwords.append({
-                    "label" : key,
+                    "label" : camel_case_split(key),
                     "value" : str(input[0]['headerFields'][key]["value"]).strip()
-                })
+                    })
+                    
         f.close()
-    elif (classification == "Identification" or classification == "Vaccination"):
-        nlp = spacy.load(model)
+    # elif (spacy.util.is_package(model)):
+    elif (classification == "Vaccination" or classification == "Identification"):
+        nlp = spacy.load(directory + "\Models\\"+ classification + "-model")
         nlp.pipe_names
-        doc = nlp(input)
+        with open(directory + "\\text.txt") as f:
+            lines = f.readlines()
+            listToStr = ' '.join(map(str, lines))
+        doc = nlp(listToStr)
         for ent in doc.ents:
             smartwords.append({
                 "label" : ent.label_,
                 "value" : ent.text.strip()
             })
     
-    directory = os.path.dirname(os.path.abspath(__file__))
-    print(directory)
     keywords = []
     f = open(directory + "\BERT-keywords.json")
     BERT_text = json.load(f)
@@ -48,7 +51,11 @@ def main(docname, classification, model, input, user):
     
     nlp = spacy.load("en_core_web_sm")
     nlp.pipe_names
-    doc = nlp(input)
+    with open(directory + "\\text.txt") as f:
+        lines = f.readlines()
+        listToStr = ' '.join(map(str, lines))
+        
+    doc = nlp(listToStr)
     for ent in doc.ents:
         keywords.append(ent.text.strip())
     
@@ -65,4 +72,4 @@ def main(docname, classification, model, input, user):
     }
     collection.insert_one(smart_document)
 
-main(sys.argv[1], sys.argv[2], sys.argv[3], sys.argv[4], sys.argv[5])
+main(sys.argv[1], sys.argv[2], sys.argv[3])
