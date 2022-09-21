@@ -1,6 +1,8 @@
 # Named Entity Extraction
 
 ## Create a new extraction model
+### Extract PDF text
+Perform Optical Character Recognition (OCR) to extract text from PDF files. Can use Sap Robot Process Automation to automate this process using SAP OCR.
 
 ### Create training data
 Use the linked tool [^1] to be able to extract labelled information from a textfile
@@ -11,7 +13,7 @@ SpaCy has a specialised tuple-based data format [^2]
 Use the json-to-spacy.py file to convert json data to spaCy data
 
 ### Getting extra data
-Use randomise-data.py to generate extra data fields. Ensure that each field has an extensive list of values, to prevent data from getting stale and resulting over-training.
+Use randomise-data.py to generate extra data entries. Ensure that each data field has an extensive list of values, to prevent data from getting stale and resulting overfitting.
 Adapt as needed
 
 ### Train model

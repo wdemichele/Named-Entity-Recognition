@@ -48,7 +48,7 @@ def train_spacy(data,iterations):
                 
 nlp = train_spacy(TRAIN_DATA, 30)
 
-# Save our trained Model, use the same name as the classifier will output
+# Save our trained Model, use the same name as the classifier will output plus "-model" i.e "Identification-model"
 modelfile = input("Enter your Model Name: ")
 nlp.to_disk(".\\Models\\" + modelfile)
 
