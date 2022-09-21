@@ -22,9 +22,8 @@
       "DATE OF BIRTH",
       "DOCUMENT/LICENSE NUMBER",
       "EXPIRATION DATE",
-      "EXPIRY DATE",
-      "LICENSE NUMBER",
-      "NAME"
+      "NAME",
+      "POSTCODE"
     ]
   },
   "pipeline":[

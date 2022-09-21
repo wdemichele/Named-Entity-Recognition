@@ -15,7 +15,7 @@ def main(docname, classification, user):
     smartwords = []
     directory = os.path.dirname(os.path.abspath(__file__))
     
-    if (classification == "Invoice"):
+    if (classification == "Invoice" or classification == "Payment Advice" or classification == "Purchase Order" or classification == "Sample Form"):
         input = directory + "\\extracted.json"
         f = open(input)
         input = json.load(f)
