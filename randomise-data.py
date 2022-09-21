@@ -90,30 +90,39 @@ ADDRESS = ["25 LENNOX ST YARRAVILLE 3013","39 SUNDERLAND RD GATESHEAD 3000","51 
 EXPIRATION = ["30-07-2024","09-02-2018","09-07-2028","27-05-2028","01-11-2024","30-11-2028","15-08-2017","19-04-2021","03-03-2025","23-08-2027","02-12-2020","05-06-2019","22-03-2020","26-05-2016","26-04-2020","14-09-2017","25-11-2025","03-10-2022","08-03-2018","03-01-2016","01-11-2024","14-02-2024","04-10-2018","19-06-2016","29-05-2026","20-09-2023","25-07-2023","10-11-2028","23-05-2024","28-09-2020","24-03-2017","29-09-2028","25-03-2026","02-10-2030","07-06-2028","28-09-2028","25-09-2030","24-07-2026","01-07-2030","20-04-2028","28-08-2028","21-11-2022","11-11-2027","02-02-2025","18-01-2022","25-10-2029","18-06-2023","16-12-2023","25-05-2030","09-01-2022","22-04-2028","08-02-2029","10-08-2030","23-11-2022","05-10-2032","06-04-2032","14-07-2031","03-02-2028","22-04-2024","30-12-2031","17-11-2028","21-10-2026","09-04-2032","18-12-2028","06-04-2024","19-03-2027","07-08-2029","14-04-2025","19-06-2028","01-03-2022","11-04-2030","12-01-2023","17-02-2024","26-07-2023","23-12-2031","20-09-2023","05-07-2027","17-10-2028","28-02-2025","02-04-2031","13-01-2030","25-05-2022"]
 BIRTH = ["29-10-2015","29-02-1969","29-01-1939","04-05-1909","20-11-2006","18-12-1956","08-06-1954","19-11-1902","29-09-1958","04-04-1967","25-04-1910","05-10-1987","17-11-2004","24-02-1998","24-08-1960","10-11-1924","11-07-1959","11-06-1963","23-01-1932","13-05-1903","02-06-1908","28-02-1975","02-04-1978","03-02-1982","15-04-2007","26-09-1999","19-03-1949","03-05-2027","26-04-1965","10-04-1905","29-08-1966","04-09-1965","08-09-2012","24-04-2000","06-05-1974","28-04-1956","04-01-1995","08-03-2000","15-11-1973","28-10-2020","11-05-1958","30-11-1954","07-09-2007","10-09-2012","19-05-2012","18-08-2006","09-01-1980","20-06-1973","05-04-1998","09-12-1999","28-05-1990","29-01-1968","20-06-1993","08-02-2015","21-03-2013","10-07-1970","05-08-2010","19-10-1966","30-09-1994","16-12-1970","10-04-1966","15-08-2007","19-05-1967","25-02-1992","06-02-1998","07-03-1973","23-12-1954","24-01-1967","07-03-1959","01-06-1952","15-03-2010","31-08-1971","03-11-2019","31-01-1956","02-03-1971","29-05-2010","07-07-1962","20-12-2011","31-05-1988","15-07-1962"]
 
-randomised_data = []
+def randomise_data():
+    """
+    Function is an early attempt at building up the usable data by filling in randomised data
+    for a given classification type. Calculates the word lengths and exact extraction size
+    necessary for usage with spaCY, allowing the user to copy the printed output.    
+    """
+    
+    randomised_data = []
 
-for i in range(ITERATIONS):
-    iterant = random.randint(0,len(DATA)-1)
-    raw_text = ''
-    buffer = 0
-    entities = DATA[iterant][1]["entities"]
-    rand_entities = [NAME, LICENSE, ADDRESS, EXPIRATION, BIRTH]
-    data = ["",{"entities":[]}]
+    for i in range(ITERATIONS):
+        iterant = random.randint(0,len(DATA)-1)
+        raw_text = ''
+        buffer = 0
+        entities = DATA[iterant][1]["entities"]
+        rand_entities = [NAME, LICENSE, ADDRESS, EXPIRATION, BIRTH]
+        data = ["",{"entities":[]}]
 
-    for i  in range(len(entities)):
-        if i == 0:
-            raw_text += DATA[iterant][0][0:entities[i][0]]
-        else:
-            raw_text += DATA[iterant][0][entities[i-1][1]:entities[i][0]]
-        rand_entity = rand_entities[i][random.randint(0,len(rand_entities[i])-1)]
-        raw_text += rand_entity
-        curr_buffer = -(entities[i][1] - entities[i][0] - len(rand_entity))
-        
-        data[1]["entities"].append(tuple((entities[i][0]+buffer,entities[i][1]+buffer+curr_buffer,entities[i][2])))
-        buffer += curr_buffer
-        if i == len(entities)-1:
-            raw_text += DATA[0][0][entities[i][1]:len(DATA[iterant][0])]
-    data[0]+=raw_text
-    randomised_data.append(tuple((data[0],data[1])))
+        for i  in range(len(entities)):
+            if i == 0:
+                raw_text += DATA[iterant][0][0:entities[i][0]]
+            else:
+                raw_text += DATA[iterant][0][entities[i-1][1]:entities[i][0]]
+            rand_entity = rand_entities[i][random.randint(0,len(rand_entities[i])-1)]
+            raw_text += rand_entity
+            curr_buffer = -(entities[i][1] - entities[i][0] - len(rand_entity))
+            
+            data[1]["entities"].append(tuple((entities[i][0]+buffer,entities[i][1]+buffer+curr_buffer,entities[i][2])))
+            buffer += curr_buffer
+            if i == len(entities)-1:
+                raw_text += DATA[0][0][entities[i][1]:len(DATA[iterant][0])]
+        data[0]+=raw_text
+        randomised_data.append(tuple((data[0],data[1])))
 
-print(randomised_data)
+    print(randomised_data)
+    
+randomise_data()
